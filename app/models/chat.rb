@@ -1,7 +1,7 @@
 class Chat < ActiveRecord::Base
 
   def time_stamp
-    "hi"
+      Time.local(Time.new);
   end
 end
 
