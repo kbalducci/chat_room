@@ -1,7 +1,9 @@
 class Chat < ActiveRecord::Base
 
   def time_stamp
-      Time.local(Time.new);
+      created_at.strftime("%b %e, %l:%M %p")
   end
+
+
 end
 
