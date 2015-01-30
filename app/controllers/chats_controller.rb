@@ -7,6 +7,16 @@ class ChatsController < ApplicationController
     @chats = Chat.all
   end
 
+  def filter(text)
+    @curse_words = {'shit' => '****',
+                    'fuck' => '****',
+                    'ass'  => '***',
+                    'bitch' => '****'}
+    @curse_words.each_pair do |swear, replacement|
+      text.gsub!(/\b#{swear}\b/i, replacement)
+    end
+  end
+
   # GET /chats/1
   # GET /chats/1.json
   def show
@@ -29,7 +39,7 @@ class ChatsController < ApplicationController
     respond_to do |format|
       if @chat.save
         format.html { redirect_to root_path, notice: 'Chat was successfully created.' }
-        format.json { render json, status: :created, location: @chat }
+        format.json { render json: @chat, status: :created, location: @chat }
       else
         format.html { render :new }
         format.json { render json: @chat.errors, status: :unprocessable_entity }
@@ -43,7 +53,7 @@ class ChatsController < ApplicationController
     respond_to do |format|
       if @chat.update(chat_params)
         format.html { redirect_to @chat, notice: 'Chat was successfully updated.' }
-        format.json { render :show, status: :ok, location: @chat }
+        format.json { render json: @chat, status: :ok, location: @chat }
       else
         format.html { render :edit }
         format.json { render json: @chat.errors, status: :unprocessable_entity }
