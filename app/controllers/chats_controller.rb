@@ -5,17 +5,9 @@ class ChatsController < ApplicationController
   # GET /chats.json
   def index
     @chats = Chat.all
+    @chat = Chat.new
   end
 
-  def filter(text)
-    @curse_words = {'shit' => '****',
-                    'fuck' => '****',
-                    'ass'  => '***',
-                    'bitch' => '****'}
-    @curse_words.each_pair do |swear, replacement|
-      text.gsub!(/\b#{swear}\b/i, replacement)
-    end
-  end
 
   # GET /chats/1
   # GET /chats/1.json
@@ -35,7 +27,7 @@ class ChatsController < ApplicationController
   # POST /chats.json
   def create
     @chat = Chat.new(chat_params)
-
+    @chat.message = @chat.swear_filter
     respond_to do |format|
       if @chat.save
         format.html { redirect_to root_path, notice: 'Chat was successfully created.' }
