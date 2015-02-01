@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-  before_action :set_chat, only: [:show, :edit, :update, :destroy]
+  before_action :set_chat, only: [:show, :edit, :like, :update, :destroy]
 
   # GET /chats
   # GET /chats.json
@@ -18,9 +18,23 @@ class ChatsController < ApplicationController
   def new
     @chat = Chat.new
   end
+#changed this
+  def user
+    @chats = Chat.where(:name => params[:name])
+    render :index
+  end
 
   # GET /chats/1/edit
   def edit
+  end
+#changed this can i use like as name, what will that mess up
+  def like
+    if @chat.like.nil?
+      @chat.like = 0
+    end
+    @chat.like += 1
+    @chat.save!
+    render json: @chat
   end
 
   # POST /chats
