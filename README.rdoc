@@ -1,28 +1,9 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a chat-room app using the Rails Framework. In this application, you can create, read, update and delete posts to a chat-room. The chat-room contains chats, users, likes, messages, timestamps and photos.
 
-Things you may want to cover:
+* Ruby version - 2.1.5
 
-* Ruby version
+You should run $ bundle install to ensure you have the necessary gems.
+Also, run rake db:migrate to update database
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
